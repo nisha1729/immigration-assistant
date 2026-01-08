@@ -1,11 +1,14 @@
+import os
 import json
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
+from dotenv import load_dotenv
+load_dotenv()
 
-INDEX_PATH = "corpus/index.faiss"
-META_PATH = "corpus/meta.jsonl"
-EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+INDEX_PATH = os.getenv("INDEX_PATH")
+META_PATH = os.getenv("META_PATH")
+EMBED_MODEL = os.getenv("EMBED_MODEL")
 
 
 def load_meta(path: str):

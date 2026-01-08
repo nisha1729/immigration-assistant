@@ -3,13 +3,13 @@ import json
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
+from dotenv import load_dotenv
+load_dotenv()
 
-CHUNKS_PATH = "corpus/chunks.jsonl"
-INDEX_PATH = "corpus/index.faiss"
-META_PATH = "corpus/meta.jsonl"
-
-# Good default, fast, decent quality
-EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+CHUNKS_PATH = os.getenv("CHUNKS_PATH")
+INDEX_PATH = os.getenv("INDEX_PATH")
+META_PATH = os.getenv("META_PATH")
+EMBED_MODEL = os.getenv("EMBED_MODEL")
 
 def load_chunks(path: str):
     chunks = []
@@ -46,7 +46,7 @@ def main():
     # Save metadata in the same order as embeddings were added
     with open(META_PATH, "w", encoding="utf-8") as f:
         for c in chunks:
-            # You can drop text here to reduce size, but keep it for now for debugging
+            # can drop text here to reduce size, but keep it for now for debugging
             f.write(json.dumps(c, ensure_ascii=False) + "\n")
 
     print(f"[OK] Indexed {len(chunks)} chunks")

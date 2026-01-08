@@ -1,16 +1,12 @@
 from dotenv import load_dotenv
 import os
 import requests
+import re
+from typing import Any, Iterable
 
 load_dotenv()
 
 HF_TOKEN = os.getenv("HF_API_TOKEN")
-
-import os
-import re
-import requests
-from typing import Any, Iterable
-
 BASE_URL = "https://router.huggingface.co/v1"
 MODEL = "HuggingFaceTB/SmolLM3-3B:hf-inference"
 
